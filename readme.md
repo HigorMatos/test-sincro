@@ -1,67 +1,139 @@
-# Teste Técnico — Sistema de Gestão de Inventário
+# Inventário (Fullstack) — Teste Sincro
 
-## 📋 Sobre o Projeto
+Aplicação fullstack para gerenciamento de **itens** e **categorias** de inventário.
 
-Este é um **teste técnico Full-Stack** para desenvolvimento de um sistema completo de gestão de inventário, com **relacionamento 1:N entre Categorias e Itens**.
-
-⚠️ **IMPORTANTE:** Você deve implementar **tanto o Back-end quanto o Front-end**, pois o front-end depende das APIs REST criadas no back-end para funcionar.
-
-O sistema deve permitir:
-- Gerenciar categorias (uma categoria pode ter vários itens)
-- Gerenciar itens de inventário (cada item pertence a apenas uma categoria)
-- CRUD completo para ambas as entidades
-- Integração completa entre back-end e front-end
+- **Backend:** Java 17 + Spring Boot + JPA  
+- **Frontend:** Next.js (TypeScript)  
+- **Banco:** PostgreSQL (Docker)
 
 ---
 
-## 📚 Documentação por Área
-
-Este repositório está organizado em documentações específicas para cada área de desenvolvimento:
-
-### 🔧 [readmeBack-end.md](readmeBack-end.md)
-**➡️ Comece por aqui! (Parte 1)**
-
-Contém todas as especificações para implementação do back-end em **Java/Spring Boot**:
-- APIs REST para CRUD de Categorias e Itens
-- Modelo de dados e relacionamento 1:N
-- Endpoints e validações necessárias
-- Estrutura do projeto Spring Boot
-- Pré-requisitos: Java 21+, Maven, PostgreSQL
-
-📌 **Implemente primeiro o back-end** para disponibilizar as APIs que o front-end irá consumir.
+## Pré-requisitos
+- Docker + Docker Compose
+- Java 17+
+- Node.js 18+
+- Git
 
 ---
 
-### 🎨 [readmeFront-end.md](readmeFront-end.md)
-**➡️ Depois implemente isto! (Parte 2)**
+## Como executar
 
-Contém todas as especificações para implementação do front-end em **Angular ou React/Next.js**:
-- Interfaces de usuário (telas e formulários)
-- Componentes de listagem, cadastro, edição e detalhes
-- Integração com as APIs REST do back-end
-- Estrutura do projeto
-- Pré-requisitos: Node.js 18+, Angular CLI ou Next.js
+### 1) Banco de dados (Docker)
+Na raiz do repositório (onde está o `docker-compose.yml`):
 
-📌 **Implemente após o back-end** estar funcionando e com as APIs disponíveis.
+```bash
+docker-compose up -d
 
----
+Verifique se o container subiu:
 
-## 🚀 Como Começar
+docker ps
 
-1. **Leia o [readmeBack-end.md](readmeBack-end.md)** e implemente as APIs REST
-2. **Teste as APIs** (use Postman, Insomnia ou similar)
-3. **Leia o [readmeFront-end.md](readmeFront-end.md)** e implemente as interfaces
-4. **Integre front-end com back-end** e teste o fluxo completo
-5. **Envie seu código** via fork do repositório
+Para reset total do banco (apaga o volume):
 
----
+docker-compose down -v
+docker-compose up -d
 
-## 🤝 Entrega
+Credenciais do Postgres (Docker):
 
-1. Faça um fork deste repositório
-2. Implemente a solução **completa** (back-end + front-end)
-3. Certifique-se de que ambos estão funcionando e integrados
-4. Envie o link do seu repositório
+Host: localhost
+
+Porta: 5432
+
+Database: inventario
+
+User: postgres
+
+Password: postgres
+
+2) Backend (Spring Boot)
+
+Em um terminal:
+
+cd backend/inventario-api
+./mvnw spring-boot:run
+
+No Windows:
+
+cd backend/inventario-api
+mvnw.cmd spring-boot:run
+
+API disponível em:
+
+http://localhost:8080/api
+
+3) Frontend (Next.js)
+
+Em outro terminal:
+
+cd frontend
+npm install
+npm run dev
+
+Frontend disponível em:
+
+http://localhost:3000/items
+
+Endpoints principais
+Categorias
+
+GET /api/categories — listar
+
+POST /api/categories — criar
+
+Itens
+
+GET /api/items — listar (filtro opcional: ?categoriaId=1)
+
+POST /api/items — criar
+
+GET /api/items/{id} — detalhar
+
+PUT /api/items/{id} — atualizar
+
+DELETE /api/items/{id} — remover
+
+Configurações
+Frontend (.env.local)
+
+Crie o arquivo frontend/.env.local:
+
+NEXT_PUBLIC_API_URL=http://localhost:8080/api
+
+Após alterar o .env.local, reinicie o frontend.
+
+Backend (application.yml)
+
+O backend está configurado para acessar o Postgres via:
+
+jdbc:postgresql://localhost:5432/inventario
+
+Troubleshooting
+Backend não conecta no banco
+
+Confirme que o Postgres está rodando:
+
+docker ps
+
+Verifique logs do banco:
+
+docker-compose logs -f db
+
+Reset do banco (se necessário):
+
+docker-compose down -v
+docker-compose up -d
+Frontend com ERR_CONNECTION_REFUSED
+
+Confirme que o backend está rodando em http://localhost:8080/api
+
+Confirme o NEXT_PUBLIC_API_URL em frontend/.env.local
+
+Reinicie o frontend após alterações
+
+Autor
+
+Higor Matos
+
 
 ---
 
