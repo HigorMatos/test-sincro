@@ -21,6 +21,26 @@ Aplicação fullstack para gerenciamento de **itens** e **categorias** de invent
 ### 1) Banco de dados (Docker)
 Na raiz do repositório (onde está o `docker-compose.yml`):
 
+Testes (API)
+
+Os endpoints foram validados via Postman:
+
+GET /api/categories
+
+POST /api/categories
+
+GET /api/items
+
+POST /api/items
+
+GET /api/items/{id}
+
+PUT /api/items/{id}
+
+DELETE /api/items/{id}
+
+------
+
 ```bash
 docker-compose up -d
 
