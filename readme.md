@@ -2,7 +2,7 @@
 
 Aplicação fullstack para gerenciamento de **itens** e **categorias** de inventário.
 
-- **Backend:** Java 17 + Spring Boot + JPA  
+- **Backend:** Java 21 + Spring Boot + JPA  
 - **Frontend:** Next.js (TypeScript)  
 - **Banco:** PostgreSQL (Docker)
 
