@@ -137,4 +137,3 @@ Higor Matos
 
 ---
 
-**Boa sorte! 🎯**
