@@ -10,7 +10,7 @@ Aplicação fullstack para gerenciamento de **itens** e **categorias** de invent
 
 ## Pré-requisitos
 - Docker + Docker Compose
-- Java 17+
+- Java 21+
 - Node.js 18+
 - Git
 
